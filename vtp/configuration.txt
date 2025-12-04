@@ -1,0 +1,49 @@
+### SW1 ###
+configure terminal
+vlan 10
+ name sales
+exit
+vlan 20
+ name mrkt
+exit
+vlan 30
+ name IT
+exit
+vlan 40
+ name DC
+exit
+
+interface ethernet0/0
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+exit
+
+vtp mode server
+vtp domain ccn.com
+vtp password ccn@123
+
+### SW2 ###
+configure terminal
+interface ethernet0/0
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+exit
+interface ethernet0/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+exit
+
+vtp mode client
+vtp domain ccn.com
+vtp password ccn@123
+
+### SW3 ###
+configure terminal
+interface ethernet0/0
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+exit
+
+vtp mode client
+vtp domain ccn.com
+vtp password ccn@123
